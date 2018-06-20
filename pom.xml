@@ -55,10 +55,11 @@
      <!-- This property will be set by the Maven Dependency plugin -->
       <annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
       <scoverage.plugin.version>1.3.0</scoverage.plugin.version>
- 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
+	<!-- Optional URL to server. Default value is http://localhost:9000 -->
+	<sonar.host.url>https://sonar.helix.everis.cloud/</sonar.host.url>
     </properties>
 	 <reporting>
       <plugins>
