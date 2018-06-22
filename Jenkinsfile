@@ -14,7 +14,7 @@ pipeline {
 	environment {
         	//variable con el nombre del proyecto
         	APP_NAME = 'My-Java-App'
-		mvnHome = 'JDK8'
+		mvnHome = 'M3'
     	}
 	
     stages { //Inicio fases del workflow	
@@ -38,12 +38,8 @@ pipeline {
 	
 	stage('Build') { // Build
       	     steps {
-		//      withMaven(jdk: 'JDK8', maven: 'M3') {
-  		//	sh 'mvn clean package'
-  		//	}
-		// Run the maven build
-		     sh "mvn clean install"
-                //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+		
+                sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
