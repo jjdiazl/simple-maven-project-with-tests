@@ -11,8 +11,7 @@ pipeline {
         timeout(time: 76, unit: 'HOURS') 
     }
 	
-	//def mvnHome
-	
+
     stages { //Inicio fases del workflow	
 	stage ('Initialize') { 
 		//Primer paso, notificar inicio workflow
@@ -28,7 +27,8 @@ pipeline {
       		git 'https://github.com/jjdiazl/simple-maven-project-with-tests.git'
       		// Get the Maven tool.
       		// ** NOTE: This 'M3' Maven tool must be configured
-      		// **       in the global configuration.           
+      		// **       in the global configuration.     
+		def mvnHome
       		mvnHome = tool 'M3'
    		}
 	}
