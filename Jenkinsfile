@@ -38,7 +38,7 @@ pipeline {
 	
 	stage('Build') { // Build
       	     steps {
-		sh "export PATH=$MVN_CMD_DIR:$PATH && mvn clean package"
+		sh "./mvnw clean package"
                 //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
