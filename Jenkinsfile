@@ -14,6 +14,7 @@ pipeline {
     environment {
         //variable con el nombre del proyecto
         APP_NAME = 'My-Java-App'
+	mvnHome = tool 'M3'
     }
 	
     stages { //Inicio fases del workflow	
@@ -32,7 +33,6 @@ pipeline {
       		// Get the Maven tool.
       		// ** NOTE: This 'M3' Maven tool must be configured
       		// **       in the global configuration.     
-		def mvnHome = tool 'M3'
    		}
 	}
 	
