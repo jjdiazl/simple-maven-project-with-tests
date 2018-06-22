@@ -38,8 +38,11 @@ pipeline {
 	
 	stage('Build') { // Build
       	     steps {
+		      withMaven(jdk: 'JDK8', maven: 'M3') {
+  			sh 'mvn clean install'
+  			}
 		// Run the maven build
-		     sh "mvn clean install"
+		     //sh "mvn clean install"
                 //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
