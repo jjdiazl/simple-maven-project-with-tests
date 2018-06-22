@@ -7,7 +7,7 @@ node {
         maven 'M3' //M3 es el nombre que le puse al maven instalado para Jenkins
         jdk 'JDK8' //JDK8 es el nombre que le puse al java de Jenkins
    // }
-    options {
+ /*   options {
         //Si en 3 días no ha terminado que falle.
         timeout(time: 76, unit: 'HOURS') 
     }
@@ -16,7 +16,8 @@ node {
         //variable con el nombre del proyecto
         APP_NAME = 'My-Java-App'
     }
-	
+*/	
+	      APP_NAME = 'My-Java-App'
     stages { //Inicio fases del workflow	
 /*	stage ('Initialize') { 
 		//Primer paso, notificar inicio workflow
