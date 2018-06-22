@@ -13,7 +13,7 @@ pipeline {
 	
 	//def mvnHome
 	
-	
+    stages { //Inicio fases del workflow	
 	stage ('Initialize') { 
 		//Primer paso, notificar inicio workflow
              steps {
@@ -151,6 +151,7 @@ pipeline {
 }
 }
 }
+	}
 
 
 	
