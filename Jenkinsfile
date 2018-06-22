@@ -194,10 +194,10 @@ node {
    sh "exit -1"
   }
  }
-   
-   stage('Results') {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archive 'target/*.jar'
-   }
-}
+   */
+//   stage('Results') {
+//      junit '**/target/surefire-reports/TEST-*.xml'
+//      archive 'target/*.jar'
+//   }
+//}
 */
