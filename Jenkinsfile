@@ -1,16 +1,12 @@
 #!groovy
 
-pipeline {
-	
+node {
    	def mvnHome
-	options {        //Si en 3 días no ha terminado que falle.
-        	timeout(time: 76, unit: 'HOURS') 
-    	}
+	
 	environment {	//variable con el nombre del proyecto
         	APP_NAME = 'My-Java-App'
     	}
 	
-node {
 	stage ('Initialize') { //Primer paso, notificar inicio workflow
              steps {
                   slackSend (message: 'Inicio ejecucion ' + APP_NAME, channel: '#jenkins', color: '#0000FF', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXX' )
@@ -147,6 +143,6 @@ node {
 }
 }
 }
-}
+
 
 	
