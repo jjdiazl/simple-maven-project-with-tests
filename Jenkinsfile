@@ -1,11 +1,18 @@
 #!groovy
 
 pipeline {
-   	def mvnHome
+   	agent any    //Agente de Docker, de momento no utilizo Docker
+     tools { //Alias a herramientas instaladas en Jenkins
+        maven 'M3' //M3 es el nombre que le puse al maven instalado para Jenkins
+        jdk 'JDK8' //JDK8 es el nombre que le puse al java de Jenkins
+    }
+    options {
+        //Si en 3 días no ha terminado que falle.
+        timeout(time: 76, unit: 'HOURS') 
+    }
 	
-	environment {	//variable con el nombre del proyecto
-        	APP_NAME = 'My-Java-App'
-    	}
+	//def mvnHome
+	
 	
 	stage ('Initialize') { //Primer paso, notificar inicio workflow
              steps {
