@@ -15,7 +15,7 @@ pipeline {
         //variable con el nombre del proyecto
         APP_NAME = 'My-Java-App'
 	//mvnHome = tool 'M3'
-	mvnHome = tool 'JDK8'
+	mvnHome = tool 'M3'
     }
 	
     stages { //Inicio fases del workflow	
@@ -40,6 +40,7 @@ pipeline {
 	stage('Build') { // Build
       	     steps {
 		// Run the maven build
+		     echo mvnHome
                 sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
