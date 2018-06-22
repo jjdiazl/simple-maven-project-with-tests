@@ -38,8 +38,11 @@ pipeline {
 	
 	stage('Build') { // Build
       	     steps {
-		sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
-                //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+		     script {
+                    	def mvnHome = tool 'M3'
+			sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
+		     }
+		     //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
