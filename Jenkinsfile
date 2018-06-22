@@ -1,5 +1,7 @@
 #!groovy
 
+def mvnHome = tool 'M3'
+
 pipeline {
    	agent any    //Agente de Docker, de momento no utilizo Docker
      tools { //Alias a herramientas instaladas en Jenkins
@@ -15,7 +17,7 @@ pipeline {
         //variable con el nombre del proyecto
         APP_NAME = 'My-Java-App'
 	//mvnHome = tool 'M3'
-	mvnHome = tool 'M3'
+	
     }
 	
     stages { //Inicio fases del workflow	
