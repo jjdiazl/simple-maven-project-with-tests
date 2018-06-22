@@ -143,6 +143,7 @@ node {
            	hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado inestable. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
       	}
 }
+}
 		
 /*   stage("UnitTest Source") {
   try {
