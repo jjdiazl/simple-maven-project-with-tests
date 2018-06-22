@@ -130,7 +130,8 @@ pipeline {
                 deleteDir()
            }
         }
-	
+    }
+}
 	//Inicio de acciones post ejecución del workflow
     	//Notificamos como ha sido la ejecución del workflow
     	post {
@@ -147,8 +148,7 @@ pipeline {
            	hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado inestable. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
       	}
 }
-}
-}
+
 
 
 	
