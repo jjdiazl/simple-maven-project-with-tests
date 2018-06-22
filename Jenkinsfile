@@ -38,8 +38,8 @@ pipeline {
 	
 	stage('Build') { // Build
       	     steps {
-		
-                sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+		sh "export PATH=$MVN_CMD_DIR:$PATH && mvn clean package"
+                //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
