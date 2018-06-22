@@ -137,68 +137,9 @@ node {
       		failure {
            		slackSend channel: '#jenkins',color: '#FF0000', message: APP_NAME + ' se encuentra en estado fallido. ${BLUE_OCEAN_URL}', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXX'
            		hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado fallido. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
-      	}
+      		}
       	unstable {
            	slackSend channel: '#jenkins',color: '#FFFF00', message: APP_NAME + ' se encuentra en estado inestable. ${BLUE_OCEAN_URL}', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXXX'
            	hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado inestable. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
       	}
 }
-}
-		
-/*   stage("UnitTest Source") {
-  try {
-    sh "'${mvnHome}/bin/mvn' clean test"
-  } catch (err) {
-   sh "exit -1"
-  }
- }*/
- /*
-  stage("Compile Source") {
-  try {
-    sh "'${mvnHome}/bin/mvn' clean compile package"
-  } catch (err) {
-   sh "exit -1"
-  }
- }
- */
- 
-
-  /*
-  
- stage("Package") {
-  try {
-      sh "echo package jjdl"
-   sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore install "
-  } catch (err) {
-   sh "exit -1"
-  }
- }
-	
-  
- stage("CoverageTest Source") {
-  try {
-      sh "echo sonar report jjdl"
-    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore scoverage:report sonar:sonar"
-  } catch (err) {
-   sh "exit -1"
-  }
- }
-   
-   */
-   /*
- stage("Publish Artifact Nexus") {
-  try {
-      
-    sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore deploy"
-   
-  } catch (err) {
-   sh "exit -1"
-  }
- }
-   */
-//   stage('Results') {
-//      junit '**/target/surefire-reports/TEST-*.xml'
-//      archive 'target/*.jar'
-//   }
-//}
-
