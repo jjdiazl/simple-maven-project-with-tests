@@ -11,7 +11,11 @@ pipeline {
         timeout(time: 76, unit: 'HOURS') 
     }
 	
-
+    environment {
+        //variable con el nombre del proyecto
+        APP_NAME = 'My-Java--App'
+    }
+	
     stages { //Inicio fases del workflow	
 	stage ('Initialize') { 
 		//Primer paso, notificar inicio workflow
