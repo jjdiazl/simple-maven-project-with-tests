@@ -39,7 +39,7 @@ pipeline {
 	stage('Build') { // Build
       	     steps {
 		// Run the maven build
-                sh "maven -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+                sh "mvn -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
