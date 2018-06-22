@@ -1,6 +1,7 @@
 #!groovy
 
-node {
+pipeline {
+	
    	def mvnHome
 	options {        //Si en 3 días no ha terminado que falle.
         	timeout(time: 76, unit: 'HOURS') 
@@ -9,6 +10,7 @@ node {
         	APP_NAME = 'My-Java-App'
     	}
 	
+node {
 	stage ('Initialize') { //Primer paso, notificar inicio workflow
              steps {
                   slackSend (message: 'Inicio ejecucion ' + APP_NAME, channel: '#jenkins', color: '#0000FF', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXX' )
@@ -142,6 +144,7 @@ node {
            	slackSend channel: '#jenkins',color: '#FFFF00', message: APP_NAME + ' se encuentra en estado inestable. ${BLUE_OCEAN_URL}', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXXX'
            	hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado inestable. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
       	}
+}
 }
 }
 }
