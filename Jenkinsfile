@@ -1,5 +1,6 @@
 #!groovy
 
+none {
 def mvnHome = tool 'M3'
 
 pipeline {
@@ -157,6 +158,6 @@ pipeline {
       	}
 }
 
-
+}
 
 	
