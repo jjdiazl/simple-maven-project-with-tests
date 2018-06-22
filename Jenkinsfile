@@ -77,11 +77,10 @@ pipeline {
         }
 	
 	stage("Publish Artifact Nexus") { //publicamos en nexus
- 	 	try {
-          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore deploy"
-     		} catch (err) {
-   		sh "exit -1"
-  	}
+        	steps {
+			sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore deploy"
+  		}
+	}
  	
 	stage ('Deploy to Pre-production environment') {      	   //Desplegamos en el entorno de Pre-Producción
            //Se despliega en un tomcat con el plugin Cargo
