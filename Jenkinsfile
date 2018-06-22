@@ -39,7 +39,7 @@ pipeline {
 	stage('Build') { // Build
       	     steps {
 		     script {
-                    	def mvnHome = tool 'M3'
+                    	def mvnHome = tool 'JDK8'
 			sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
 		     }
 		     //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
