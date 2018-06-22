@@ -39,7 +39,7 @@ pipeline {
 	stage('Build') { // Build
       	     steps {
 		      withMaven(jdk: 'JDK8', maven: 'M3') {
-  			sh 'mvn clean install'
+  			sh 'mvn clean package'
   			}
 		// Run the maven build
 		     //sh "mvn clean install"
