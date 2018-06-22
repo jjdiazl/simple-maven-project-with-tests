@@ -1,6 +1,6 @@
 #!groovy
 
-pipeline {
+node {
 	
    	agent any    //Agente de Docker, de momento no utilizo Docker
      tools { //Alias a herramientas instaladas en Jenkins
