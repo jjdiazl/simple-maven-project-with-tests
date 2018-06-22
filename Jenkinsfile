@@ -13,7 +13,7 @@ pipeline {
 	
     environment {
         //variable con el nombre del proyecto
-        APP_NAME = 'My-Java--App'
+        APP_NAME = 'My-Java-App'
     }
 	
     stages { //Inicio fases del workflow	
@@ -39,7 +39,7 @@ pipeline {
 	stage('Build') { // Build
       	     steps {
 		// Run the maven build
-                sh "'${M3}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+                sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
