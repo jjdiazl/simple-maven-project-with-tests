@@ -1,6 +1,6 @@
 #!groovy
 
-node {
+pipeline {
    	def mvnHome
 	
 	environment {	//variable con el nombre del proyecto
