@@ -1,7 +1,7 @@
 #!groovy
 
 pipeline {
-	def mvnHome = tool 'M3'
+	mvnHome = tool 'M3'
    	agent any    //Agente de Docker, de momento no utilizo Docker
      tools { //Alias a herramientas instaladas en Jenkins
         maven 'M3' //M3 es el nombre que le puse al maven instalado para Jenkins
