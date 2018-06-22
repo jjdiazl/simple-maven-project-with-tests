@@ -15,7 +15,7 @@ pipeline {
         //variable con el nombre del proyecto
         APP_NAME = 'My-Java-App'
 	//mvnHome = tool 'M3'
-	mvnHome = tool 'MAVEN3'
+	mvnHome = tool 'JDK8'
     }
 	
     stages { //Inicio fases del workflow	
