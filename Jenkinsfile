@@ -44,8 +44,8 @@ pipeline {
 				  //sh 'mvn test'
 				  sh 'echo este proyecto tiene un test con error. Por ello, lo saltamos'
 			}, 'Performance Test': {
-				  sh 'mvn jmeter:jmeter'
-				  //sh 'este proyecto no tiene jmeter echo este proyecto tiene un test con error. Por ello, lo saltamos'
+				  //sh 'mvn jmeter:jmeter'
+				  sh 'este proyecto no tiene jmeter test de rendimiento. Por ello, lo saltamos'
 			}
 		  }
 	  }
