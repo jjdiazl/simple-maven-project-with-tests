@@ -43,7 +43,7 @@ pipeline {
 echo "PATH = ${PATH}"
 echo "M2_HOME = ${M2_HOME}"
 '''
-         	sh "mvn -Dmaven.test.failure.ignore clean package"
+         	sh "'${M2_HOME}/bin/mvn' -Dmaven.test.failure.ignore clean package"
          }
    	}    
 	    
