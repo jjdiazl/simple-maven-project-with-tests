@@ -54,7 +54,7 @@ pipeline {
 		  steps {
 			  parallel 'Sonarqube Analysis': {//Si quieres ver la cobertura en sonar es necesario ejecutar cobertura y después sonar
 				  sh 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true'
-				  sh 'mvn sonar:sonar"
+				  sh 'mvn sonar:sonar'
 				  echo 'Sonarqube Analysis'
 			  }, 'Cobertura code coverage' : {//Realizamos análisis de cobertura de código
 				  //Si la cobertura de código es inferior al 80% falla la ejecución y falla el workflow
