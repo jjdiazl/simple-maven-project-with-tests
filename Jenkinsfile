@@ -41,9 +41,9 @@ pipeline {
 	  stage ('Test') { //Fase de tests. En paralelo tests automaticos y de rendimiento
 		  steps {
 			  parallel 'Integration & Unit Tests': {
-				  sh 'mvn test "
+				  sh 'mvn test'
 			}, 'Performance Test': {
-				  sh 'mvn jmeter:jmeter"
+				  sh 'mvn jmeter:jmeter'
 			}
 		  }
 	  }
