@@ -41,6 +41,13 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+	 <repositories>
+    <repository>
+      <id>forplay-legacy</id>
+      <url>http://forplay.googlecode.com/svn/mavenrepo</url>
+    </repository>
+  </repositories>
+	
 	   <distributionManagement>
       <repository>
          <id>releases</id>
