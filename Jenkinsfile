@@ -74,7 +74,7 @@ pipeline {
 	  
 	  stage("Publish Artifact Nexus") { //publicamos en nexus
 		  steps {
-			  sh 'mvn -Dmaven.test.failure.ignore -Dmaven.test.skip=true deploy'
+			  sh 'mvn -Dmaven.test.skip=true deploy'
 		  }
 	  }
 	  
