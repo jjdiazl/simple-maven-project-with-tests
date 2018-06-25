@@ -19,7 +19,7 @@ pipeline {
           stage ('Initialize') { 
           //Primer paso, notificar inicio workflow
                    steps {
-		   	sh 'echo configurar slack + hipchatsend'
+		   	echo 'se debe configurar antes: slack + hipchatsend'
 			//slackSend (message: 'Inicio ejecucion ' + APP_NAME, channel: '#jenkins', color: '#0000FF', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXX' )
 			//hipchatSend (color: 'GRAY', failOnError: true, notify: true, message: 'Inicio ejecucion ' + APP_NAME + ' <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', v2enabled: true,  room: 'Jenkins' )
                   }
@@ -42,19 +42,34 @@ pipeline {
 		  steps {
 			  parallel 'Integration & Unit Tests': {
 				  //sh 'mvn test'
-				  sh 'echo este proyecto tiene un test con error. Por ello, lo saltamos'
+				  echo 'este proyecto tiene un test con error. Por ello, lo saltamos'
 			}, 'Performance Test': {
 				  //sh 'mvn jmeter:jmeter'
-				  sh 'este proyecto no tiene jmeter test de rendimiento. Por ello, lo saltamos'
+				  echo 'este proyecto no tiene jmeter test de rendimiento. Por ello, lo saltamos'
 			}
 		  }
 	  }
 	
-	  
-	  
-	  
-	  
-	  
+	  stage ('QA') { //Fase de QA. En paralelo Sonar, Cobertura y OWASP
+		  steps {
+			  parallel 'Sonarqube Analysis': {//Si quieres ver la cobertura en sonar es necesario ejecutar cobertura y después sonar
+				  sh 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true'
+				  sh 'mvn sonar:sonar"
+				  echo 'Sonarqube Analysis'
+			  }, 'Cobertura code coverage' : {//Realizamos análisis de cobertura de código
+				  //Si la cobertura de código es inferior al 80% falla la ejecución y falla el workflow
+				  sh 'mvn verify'
+			  }, 'OWASP Analysis' : {
+				  sh 'mvn dependency-check:check'
+			  }
+		  }
+		  //Tras ejecutar los pasos en paralelo guardo el reporte de tests
+		  post {
+			  success {
+				  junit 'target/surefire-reports/**/*.xml' 
+			  }
+		  }
+	  }
 	  
 	  
 	  
