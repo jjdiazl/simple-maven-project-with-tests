@@ -18,11 +18,11 @@ pipeline {
     
           stage ('Initialize') { 
           //Primer paso, notificar inicio workflow
-          /*         steps {
-                        slackSend (message: 'Inicio ejecucion ' + APP_NAME, channel: '#jenkins', color: '#0000FF', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXX' )
-                        hipchatSend (color: 'GRAY', failOnError: true, notify: true, message: 'Inicio ejecucion ' + APP_NAME + ' <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', v2enabled: true,  room: 'Jenkins' )
+                   steps {
+		   	sh 'echo configurar slack + hipchatsend'
+			slackSend (message: 'Inicio ejecucion ' + APP_NAME, channel: '#jenkins', color: '#0000FF', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXX' )
+			hipchatSend (color: 'GRAY', failOnError: true, notify: true, message: 'Inicio ejecucion ' + APP_NAME + ' <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', v2enabled: true,  room: 'Jenkins' )
                   }
-          */
 	  }
 
           stage('Preparation') { // for display purposes
