@@ -78,11 +78,12 @@ pipeline {
 		  }
 	  }
 	  
-	  stage ('Deploy to Pre-production environment') {      	   //Desplegamos en el entorno de Pre-Producción
+	/*  stage ('Deploy to Pre-production environment') {      	   //Desplegamos en el entorno de Pre-Producción
 		  //Se despliega en un tomcat con el plugin Cargo
 		  steps {
 			  sh 'mvn clean package cargo:redeploy -Dmaven.test.failure.ignore -Dmaven.test.skip=true'
 		  }
 	  }
+	  */
   }
 }
