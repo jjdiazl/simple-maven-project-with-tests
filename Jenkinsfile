@@ -74,10 +74,16 @@ pipeline {
 	  
 	  stage("Publish Artifact Nexus") { //publicamos en nexus
 		  steps {
-			  sh 'mvn -Dmaven.test.failure.ignore deploy'
+			  sh 'mvn -Dmaven.test.failure.ignore -Dmaven.test.skip=true deploy'
 		  }
 	  }
 	  
+	  stage ('Deploy to Pre-production environment') {      	   //Desplegamos en el entorno de Pre-Producción
+		  //Se despliega en un tomcat con el plugin Cargo
+		  steps {
+			  sh 'mvn clean package cargo:redeploy -Dmaven.test.skip=true"
+		  }
+	  }
 	  
   }
 }
