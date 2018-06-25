@@ -39,14 +39,13 @@ pipeline {
 	stage('Build') {
       // Run the maven build
       steps {  
-	      sh '''
-echo "PATH = ${PATH}"
-echo "M2_HOME = ${M2_HOME}"
-'''
-         	sh "'${M2_HOME}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-         }
+def mvn_version = 'M3'
+withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+	sh "mvn clean package"
+}
+      }
    	}    
-	    
+	
 	    
 	//stage('Build') { // Build
       	  //   steps {
