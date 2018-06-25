@@ -2,7 +2,13 @@
 
 pipeline {
 	
-	agent any    //Agente de Docker, de momento no utilizo Docker
+	//agent any    //Agente de Docker, de momento no utilizo Docker
+	agent {
+		node 
+		{
+			master;
+		}
+	}
      	tools { //Alias a herramientas instaladas en Jenkins
         	maven 'M3' //M3 es el nombre que le puse al maven instalado para Jenkins
         	jdk 'JDK8' //JDK8 es el nombre que le puse al java de Jenkins
@@ -38,11 +44,7 @@ pipeline {
 	
 	stage('Build') { // Build
       	     steps {
-		     script {
-                    	def mvnHome = tool 'JDK8'
-			sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true clean package"
-		     }
-		     //sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+		     sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
