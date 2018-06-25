@@ -84,5 +84,49 @@ pipeline {
 			  sh 'mvn clean package cargo:redeploy -Dmaven.test.failure.ignore -Dmaven.test.skip=true'
 		  }
 	  }
+	  
+	  stage ('Confirmation') {
+		  //En esta fase esperamos hasta que la persona configurada confirme que desea subir a Producción. 
+		  //Tiene 72 horas para confirmar la subida a Producción.
+		  //Se envían notificaciones para que la persona tenga constancia
+		  steps {
+			  //slackSend channel: '@dromeroa',color: '#00FF00', message: '\u00BFDeseas subir a produccion?. \n Confirma en la siguiente web: ${BLUE_OCEAN_URL}' , teamDomain: 'my-company', token: 'XXXXXXXXXXX'
+			  //hipchatSend (color: 'YELLOW', failOnError: true, notify: true, message: '\u00BFDeseas subir a producci\u00F3n\u003F. \n Confirma en el siguiente <a href="${BLUE_OCEAN_URL}">Enlace</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
+			  timeout(time: 1, unit: 'HOURS') {
+				  input '\u00BFContinuar con despliegue en producci\u00F3n\u003F'
+			  }
+		  }
+	  }
+	  
+	  stage ('Tagging the release candidate') {           //Realizamos un tag en GIT del código fuente
+		  steps {               //Tagging from trunk to tag
+			  echo "Tagging the release Candidate";
+			  sh 'mvn scm:tag -Dmaven.test.skip=true'
+		  }
+	  }
+	  
+	  stage ('Deploy to Production environment') {
+		  //Comenzamos a subir a producción en los dos servidores 
+		  steps {
+			  parallel 'Server 1': {
+				  //Necesitamos realizar reintentos ya que falla la subida en remoto y se producen colisiones
+				  retry(6) {
+					  sh 'mvn tomcat7:redeploy -Dmaven.test.skip=true'
+				  }
+			  }, 'Server 2' : {
+				  retry(6) {
+					  sh 'mvn tomcat:redeploy -Dmaven.test.skip=true'
+				  }
+			  }
+		  }
+	  }
+	  
+	  stage ('CleanUp') {           //Limpiamos el workspace para no llenar los discos
+		  steps {
+			  deleteDir()
+		  }
+	  }
+
+	  
   } //end stages
 } //end pipeline
