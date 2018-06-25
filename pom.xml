@@ -102,4 +102,9 @@
          </plugin>
       </plugins>
    </reporting>
+	<scm>
+ <connection>scm:git:ssh:<your url></connection>
+ <developerConnection>scm:git:ssh:<your url></developerConnection>
+ <url>scm:git:ssh:<your url></url>
+</scm>
 </project>
