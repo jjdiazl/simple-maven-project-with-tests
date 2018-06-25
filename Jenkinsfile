@@ -6,7 +6,7 @@ pipeline {
 	agent {
 		node 
 		{
-			master;
+			label 'master';
 		}
 	}
      	tools { //Alias a herramientas instaladas en Jenkins
