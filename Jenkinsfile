@@ -84,6 +84,5 @@ pipeline {
 			  sh 'mvn clean package cargo:redeploy -Dmaven.test.skip=true'
 		  }
 	  }
-	  
   }
 }
