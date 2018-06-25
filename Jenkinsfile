@@ -127,6 +127,24 @@ pipeline {
 		  }
 	  }
 
+	  //Inicio de acciones post ejecución del workflow
+	  //Notificamos como ha sido la ejecución del workflow
+	  post {
+		  success {
+			  echo 'indicamos que todo termino bien'
+			  //slackSend channel: '#jenkins',color: '#00FF00', message: APP_NAME + ' ejecutado satisfactoriamente.', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXXX'
+			  //hipchatSend (color: 'GREEN', failOnError: true, notify: true, message: APP_NAME + ' ejecutado satisfactoriamente. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
+		  }
+		  failure {
+			  echo 'indicamos que hubo un fallo'
+			  slackSend channel: '#jenkins',color: '#FF0000', message: APP_NAME + ' se encuentra en estado fallido. ${BLUE_OCEAN_URL}', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXX'
+			  hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado fallido. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
+      		}
+		  unstable {
+			  slackSend channel: '#jenkins',color: '#FFFF00', message: APP_NAME + ' se encuentra en estado inestable. ${BLUE_OCEAN_URL}', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXXX'
+			  hipchatSend (color: 'RED', failOnError: true, notify: true, message: APP_NAME + ' se encuentra en estado inestable. <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', textFormat: true, v2enabled: true, room: 'Jenkins')
+		  }
+	  }
 	  
   } //end stages
 } //end pipeline
