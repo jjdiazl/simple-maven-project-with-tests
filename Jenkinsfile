@@ -38,15 +38,14 @@ def mvn_version = 'M3'
    		}
 	}
 	
-	stage('Build') {
-      // Run the maven build
-      steps {  
-withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
-	sh "mvn clean package"
+stage ('Build project') {
+steps {
+dir("project_templates/java_project_template"){
+sh 'mvn clean verify
+ 
 }
-      }
-   	}    
-	
+}
+}
 	    
 	//stage('Build') { // Build
       	  //   steps {
