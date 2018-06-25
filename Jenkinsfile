@@ -54,7 +54,7 @@ pipeline {
 		  steps {
 			  parallel 'Sonarqube Analysis': {//Si quieres ver la cobertura en sonar es necesario ejecutar cobertura y después sonar
 				  sh 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true'
-				  sh 'mvn sonar:sonar -Dmaven.test.skip=true'
+				  sh 'mvn sonar:sonar -Dmaven.test.skip=true -Dmaven.test.failure.ignore'
 				  echo 'Sonarqube Analysis'
 			  }, 'Cobertura code coverage' : {//Realizamos análisis de cobertura de código
 				  //Si la cobertura de código es inferior al 80% falla la ejecución y falla el workflow
@@ -81,7 +81,7 @@ pipeline {
 	  stage ('Deploy to Pre-production environment') {      	   //Desplegamos en el entorno de Pre-Producción
 		  //Se despliega en un tomcat con el plugin Cargo
 		  steps {
-			  sh 'mvn clean package cargo:redeploy -Dmaven.test.skip=true'
+			  sh 'mvn clean package cargo:redeploy -Dmaven.test.failure.ignore -Dmaven.test.skip=true'
 		  }
 	  }
   }
