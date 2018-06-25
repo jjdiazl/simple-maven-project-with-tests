@@ -58,7 +58,7 @@ pipeline {
 				  echo 'Sonarqube Analysis'
 			  }, 'Cobertura code coverage' : {//Realizamos análisis de cobertura de código
 				  //Si la cobertura de código es inferior al 80% falla la ejecución y falla el workflow
-				  sh 'mvn verify -Dmaven.test.failure.ignore=true -Dmaven.test.skip=true'
+				  sh 'mvn verify -Dmaven.test.failure.ignore=true'
 			  }, 'OWASP Analysis' : {
 				  echo 'este proyecto no tiene análisis de seguridad. Por ello, lo saltamos'
 				  //sh 'mvn dependency-check:check'
