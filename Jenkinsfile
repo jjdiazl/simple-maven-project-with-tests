@@ -101,7 +101,7 @@ pipeline {
 	  stage ('Tagging the release candidate') {           //Realizamos un tag en GIT del código fuente
 		  steps {               //Tagging from trunk to tag
 			  echo "Tagging the release Candidate";
-			  sh 'mvn scm:tag -Dmaven.test.skip=true'
+			  //sh 'mvn scm:tag -Dmaven.test.skip=true'
 		  }
 	  }
 	  
