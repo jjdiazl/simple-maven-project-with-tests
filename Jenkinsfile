@@ -81,7 +81,7 @@ pipeline {
 	  stage ('Deploy to Pre-production environment') {      	   //Desplegamos en el entorno de Pre-Producción
 		  //Se despliega en un tomcat con el plugin Cargo
 		  steps {
-			  sh 'mvn clean package cargo:redeploy -Dmaven.test.skip=true"
+			  sh 'mvn clean package cargo:redeploy -Dmaven.test.skip=true'
 		  }
 	  }
 	  
