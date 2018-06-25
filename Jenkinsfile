@@ -1,5 +1,7 @@
 #!groovy
 
+/*
+
 pipeline {
 	
 	agent any    //Agente de Docker, de momento no utilizo Docker
@@ -20,14 +22,14 @@ def mvn_version = 'M3'
     	}
 	
     stages { //Inicio fases del workflow	
-/*	stage ('Initialize') { 
+	stage ('Initialize') { 
 		//Primer paso, notificar inicio workflow
              steps {
               //    slackSend (message: 'Inicio ejecucion ' + APP_NAME, channel: '#jenkins', color: '#0000FF', teamDomain: 'my-company', token: 'XXXXXXXXXXXXXXXXXXX' )
               //    hipchatSend (color: 'GRAY', failOnError: true, notify: true, message: 'Inicio ejecucion ' + APP_NAME + ' <a href="${BLUE_OCEAN_URL}">Enlace a la ejecuci\u00F3n</a>', v2enabled: true,  room: 'Jenkins' )
             }
         }
-*/	
+	
 	stage('Preparation') { // for display purposes
              steps {
 	      	// Get some code from a GitHub repository
@@ -54,10 +56,10 @@ def mvn_version = 'M3'
       	  //   steps {
 		    // sh 'mvn clean compile'
 	//	     sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
-       		/*if (isUnix()) {
+       		if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
-         	bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)*/
+         	bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       	//	}
 	//}
 	
@@ -106,7 +108,7 @@ def mvn_version = 'M3'
                 sh "'${mvnHome}/bin/mvn' clean package cargo:redeploy -Dmaven.test.skip=true"
            }
         }
-/*	 stage ('Confirmation') {
+	 stage ('Confirmation') {
            //En esta fase esperamos hasta que la persona configurada confirme que desea subir a Producción. 
            //Tiene 72 horas para confirmar la subida a Producción.
            //Se envían notificaciones para que la persona tenga constancia
@@ -118,7 +120,7 @@ def mvn_version = 'M3'
                 }
            }
       }
-      */
+      
 		
 	stage ('Tagging the release candidate') {           //Realizamos un tag en GIT del código fuente
            steps {               //Tagging from trunk to tag
@@ -126,7 +128,7 @@ def mvn_version = 'M3'
                sh "'${mvnHome}/bin/mvn' scm:tag -Dmaven.test.skip=true"
           }
        }
-/*	stage ('Deploy to Production environment') {
+	stage ('Deploy to Production environment') {
            //Comenzamos a subir a producción en los dos servidores 
            steps {
                 parallel 'Server 1': {
@@ -141,7 +143,7 @@ def mvn_version = 'M3'
                 }
            }
       }
-*/	
+	
 		
 	stage ('CleanUp') {           //Limpiamos el workspace para no llenar los discos
            steps {
@@ -168,3 +170,4 @@ def mvn_version = 'M3'
 }
 
 	
+*/
