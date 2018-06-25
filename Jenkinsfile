@@ -36,16 +36,24 @@ pipeline {
    		}
 	}
 	
-	stage('Build') { // Build
-      	     steps {
+	stage('Build') {
+      // Run the maven build
+      steps {  
+         	sh "mvn -Dmaven.test.failure.ignore clean package"
+         }
+   	}    
+	    
+	    
+	//stage('Build') { // Build
+      	  //   steps {
 		    // sh 'mvn clean compile'
-		     sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
+	//	     sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true"
        		/*if (isUnix()) {
          	sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       		} else {
          	bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)*/
-      		}
-	}
+      	//	}
+	//}
 	
 	stage ('Test') { //Fase de tests. En paralelo tests automaticos y de rendimiento
             steps {
