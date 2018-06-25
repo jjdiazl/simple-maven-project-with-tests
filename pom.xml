@@ -103,7 +103,7 @@
       </plugins>
    </reporting>
 	<scm>
- <connection>scm:git:ssh:<your url></connection>
+ <connection>scm:git:ssh:https://github.com/jjdiazl/simple-maven-project-with-tests.git</connection>
  <developerConnection>scm:git:ssh:https://github.com/jjdiazl/simple-maven-project-with-tests.git</developerConnection>
  <url>scm:git:ssh:https://github.com/jjdiazl/simple-maven-project-with-tests.git</url>
 </scm>
