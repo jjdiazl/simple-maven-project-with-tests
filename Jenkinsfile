@@ -14,6 +14,8 @@ pipeline {
 	environment {
         	//variable con el nombre del proyecto
         	APP_NAME = 'My-Java-App'
+		
+def mvn_version = 'M3'
 	//	mvnHome = tool 'JDK8'
     	}
 	
@@ -39,7 +41,6 @@ pipeline {
 	stage('Build') {
       // Run the maven build
       steps {  
-def mvn_version = 'M3'
 withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
 	sh "mvn clean package"
 }
