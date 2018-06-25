@@ -32,10 +32,29 @@ pipeline {
                    }
           }
 	
-          stage('Build') {
-                  steps {
-                    sh 'mvn -B -DskipTests clean package -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true'
+          stage('Build') {//Fase de build
+		  steps {
+			  sh 'mvn -B -DskipTests clean package -Dmaven.test.failure.ignore clean package -Dmaven.test.skip=true'
                   }
           }
+	  
+	  stage ('Test') { //Fase de tests. En paralelo tests automaticos y de rendimiento
+		  steps {
+			  parallel 'Integration & Unit Tests': {
+				  sh 'mvn test "
+			}, 'Performance Test': {
+				  sh 'mvn jmeter:jmeter"
+			}
+		  }
+	  }
+	
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
   }
 }
