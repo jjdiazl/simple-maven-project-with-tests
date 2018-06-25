@@ -31,6 +31,10 @@
                <highlighting>true</highlighting>
             </configuration>
         </plugin>
+		 <plugin> 
+      <groupId>org.codehaus.cargo</groupId> 
+      <artifactId>cargo-maven2-plugin</artifactId> 
+    </plugin> 
         </plugins>
     </build>
     <dependencies>
